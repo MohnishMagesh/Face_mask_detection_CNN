@@ -20,9 +20,6 @@ from imutils import paths
 import matplotlib.pyplot as plt
 import numpy as np
 
-learning_rate = 1e-4
-EPOCHS = 10
-
 path = 'dataset'
 CATEGORIES = ['mask','no_mask']
 
@@ -33,7 +30,7 @@ for category in CATEGORIES:
     category_path = os.path.join(path, category)
     for img in os.listdir(category_path):
         img_path = os.path.join(category_path, img)
-        image = load_img(img_path, target_size=(100,100))
+        image = load_img(img_path,color_mode='grayscale',target_size=(100,100))
         image = img_to_array(image)
         # image = preprocess_input(image)
 
@@ -44,7 +41,7 @@ lb = LabelBinarizer()
 labels = lb.fit_transform(labels)
 labels = to_categorical(labels)
 
-data = np.array(data, dtype="float32")
+data = np.array(data)
 labels = np.array(labels)
 
 print(data)
